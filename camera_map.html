@@ -1,0 +1,3497 @@
+<!DOCTYPE html>
+<html><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><script>
+    (function() {
+    class RuffleMimeType {
+        constructor(a, b, c) {
+            this.type = a, this.description = b, this.suffixes = c
+        }
+    }
+    class RuffleMimeTypeArray {
+        constructor(a) {
+            this.__mimetypes = [], this.__named_mimetypes = {};
+            for (let b of a) this.install(b)
+        }
+        install(a) {
+            let b = this.__mimetypes.length;
+            this.__mimetypes.push(a), this.__named_mimetypes[a.type] = a, this[a.type] = a, this[b] = a
+        }
+        item(a) {
+            return this.__mimetypes[a]
+        }
+        namedItem(a) {
+            return this.__named_mimetypes[a]
+        }
+        get length() {
+            return this.__mimetypes.length
+        }
+    }
+    class RufflePlugin extends RuffleMimeTypeArray {
+        constructor(a, b, c, d) {
+            super(d), this.name = a, this.description = b, this.filename = c
+        }
+        install(a) {
+            a.enabledPlugin || (a.enabledPlugin = this), super.install(a)
+        }
+    }
+    class RufflePluginArray {
+        constructor(a) {
+            this.__plugins = [], this.__named_plugins = {};
+            for (let b of a) this.install(b)
+        }
+        install(a) {
+            let b = this.__plugins.length;
+            this.__plugins.push(a), this.__named_plugins[a.name] = a, this[a.name] = a, this[b] = a
+        }
+        item(a) {
+            return this.__plugins[a]
+        }
+        namedItem(a) {
+            return this.__named_plugins[a]
+        }
+        get length() {
+            return this.__plugins.length
+        }
+    }
+    const FLASH_PLUGIN = new RufflePlugin("Shockwave Flash", "Shockwave Flash 32.0 r0", "ruffle.js", [new RuffleMimeType("application/futuresplash", "Shockwave Flash", "spl"), new RuffleMimeType("application/x-shockwave-flash", "Shockwave Flash", "swf"), new RuffleMimeType("application/x-shockwave-flash2-preview", "Shockwave Flash", "swf"), new RuffleMimeType("application/vnd.adobe.flash-movie", "Shockwave Flash", "swf")]);
+
+    function install_plugin(a) {
+        navigator.plugins.install || Object.defineProperty(navigator, "plugins", {
+            value: new RufflePluginArray(navigator.plugins),
+            writable: !1
+        }), navigator.plugins.install(a), 0 < a.length && !navigator.mimeTypes.install && Object.defineProperty(navigator, "mimeTypes", {
+            value: new RuffleMimeTypeArray(navigator.mimeTypes),
+            writable: !1
+        });
+        for (var b = 0; b < a.length; b += 1) navigator.mimeTypes.install(a[b])
+    }
+    install_plugin(FLASH_PLUGIN);
+})();
+</script><script async="false" type="text/javascript" src="camera_map_fichiers/in-page.js"></script><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Carte des Caméras IP</title>
+    <meta charset="utf-8">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        #mapid {
+            height: 100%;
+            width: 100%;
+        }
+        /* Style pour la légende */
+        .legend {
+            background: white;
+            padding: 10px;
+            line-height: 1.5em;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .leaflet-control-geocoder-icon {
+            background-image: url('https://unpkg.com/leaflet-control-geocoder@1.13.0/dist/images/geocoder.png');
+            background-size: 20px 20px;
+        }
+    </style>
+    <!-- Charger les CSS de Leaflet et des plugins -->
+    <link rel="stylesheet" href="camera_map_fichiers/leaflet.css">
+    <link rel="stylesheet" href="camera_map_fichiers/MarkerCluster.css">
+    <link rel="stylesheet" href="camera_map_fichiers/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="camera_map_fichiers/Control.Geocoder.css">
+<link id="nordvpn-contentScript-extension-fonts" rel="stylesheet" href="camera_map_fichiers/css.css"></head>
+<body>
+    <div id="mapid" class="leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="position: relative;" tabindex="0"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 19; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" src="camera_map_fichiers/3_002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(706px, 218px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/4.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(706px, 474px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/3_007.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(450px, 218px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/3_003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(962px, 218px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/4_003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(450px, 474px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/4_007.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(962px, 474px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/2_006.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(706px, -38px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/5_007.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(706px, 730px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/2_004.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(450px, -38px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/2_002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(962px, -38px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/5_002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(450px, 730px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/5_005.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(962px, 730px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/3.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(194px, 218px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/3_005.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1218px, 218px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/4_004.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(194px, 474px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/4_002.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1218px, 474px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/2.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(194px, -38px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/2_005.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1218px, -38px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/5_004.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(194px, 730px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/5.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1218px, 730px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/3_006.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-62px, 218px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/3_004.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1474px, 218px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/4_005.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-62px, 474px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/4_006.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1474px, 474px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/2_003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-62px, -38px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/2_007.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1474px, -38px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/5_003.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-62px, 730px, 0px); opacity: 1;"><img alt="" src="camera_map_fichiers/5_006.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1474px, 730px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-overlay-pane"></div><div class="leaflet-pane leaflet-shadow-pane"></div><div class="leaflet-pane leaflet-marker-pane"><img src="camera_map_fichiers/Flat-Blue-Smooth-Camera-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" style="margin-left: -15px; margin-top: -30px; width: 30px; height: 30px; transform: translate3d(883px, 652px, 0px); z-index: 652;" alt="Marker" tabindex="0" role="button"><img src="camera_map_fichiers/Flat-Blue-Smooth-Camera-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" style="margin-left: -15px; margin-top: -30px; width: 30px; height: 30px; transform: translate3d(1531px, 707px, 0px); z-index: 707;" alt="Marker" tabindex="0" role="button"><div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(1314px, 509px, 0px); z-index: 509;" tabindex="0" role="button"><div><span>3</span></div></div><div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(1402px, 329px, 0px); z-index: 329;" tabindex="0" role="button"><div><span>3</span></div></div><div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(1495px, 249px, 0px); z-index: 249;" tabindex="0" role="button"><div><span>7</span></div></div><div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(613px, 305px, 0px); z-index: 305;" tabindex="0" role="button"><div><span>3</span></div></div><div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(894px, 288px, 0px); z-index: 288;" tabindex="0" role="button"><div><span>2</span></div></div><img src="camera_map_fichiers/Flat-Blue-Smooth-Camera-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" style="margin-left: -15px; margin-top: -30px; width: 30px; height: 30px; transform: translate3d(861px, 25px, 0px); z-index: 25;" alt="Marker" tabindex="0" role="button"><div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(927px, 85px, 0px); z-index: 85;" tabindex="0" role="button"><div><span>3</span></div></div><div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(669px, 264px, 0px); z-index: 264;" tabindex="0" role="button"><div><span>3</span></div></div><div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(860px, 188px, 0px); z-index: 188;" tabindex="0" role="button"><div><span>7</span></div></div><div class="leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(780px, 67px, 0px); z-index: 67;" tabindex="0" role="button"><div><span>14</span></div></div><div class="leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(759px, 166px, 0px); z-index: 166;" tabindex="0" role="button"><div><span>57</span></div></div><img src="camera_map_fichiers/Flat-Blue-Smooth-Camera-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" style="margin-left: -15px; margin-top: -30px; width: 30px; height: 30px; transform: translate3d(347px, 369px, 0px); z-index: 369;" alt="Marker" tabindex="0" role="button"><div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(285px, 447px, 0px); z-index: 447;" tabindex="0" role="button"><div><span>2</span></div></div><div class="leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(37px, 235px, 0px); z-index: 235;" tabindex="0" role="button"><div><span>23</span></div></div><div class="leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(190px, 182px, 0px); z-index: 182;" tabindex="0" role="button"><div><span>7</span></div></div><div class="leaflet-marker-icon marker-cluster marker-cluster-medium leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(148px, 294px, 0px); z-index: 294;" tabindex="0" role="button"><div><span>34</span></div></div><div class="leaflet-marker-icon marker-cluster marker-cluster-large leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -20px; width: 40px; height: 40px; transform: translate3d(249px, 246px, 0px); z-index: 246;" tabindex="0" role="button"><div><span>162</span></div></div></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(1085.67px, 915.857px, 0px) scale(4);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in" aria-disabled="false"><span aria-hidden="true">+</span></a><a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out" aria-disabled="false"><span aria-hidden="true">−</span></a></div></div><div class="leaflet-top leaflet-right"><div class="leaflet-control-geocoder leaflet-bar leaflet-control"><button class="leaflet-control-geocoder-icon" type="button" aria-label="Initiate a new search">&nbsp;</button><div class="leaflet-control-geocoder-form"><input class="" type="text" placeholder="Search..."></div><div class="leaflet-control-geocoder-form-no-error">Nothing found.</div><ul class="leaflet-control-geocoder-alternatives leaflet-control-geocoder-alternatives-minimized"></ul></div></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="legend leaflet-control"><img src="camera_map_fichiers/Flat-Blue-Smooth-Camera-icon.png" width="20"> Caméra IP</div><div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com/" title="A JavaScript library for interactive maps"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" class="leaflet-attribution-flag"><path fill="#4C7BE1" d="M0 0h12v4H0z"></path><path fill="#FFD500" d="M0 4h12v3H0z"></path><path fill="#E0BC00" d="M0 7h12v1H0z"></path></svg> Leaflet</a> <span aria-hidden="true">|</span> © OpenStreetMap</div></div></div></div>
+    <!-- Charger les JS de Leaflet et des plugins -->
+    <script src="camera_map_fichiers/leaflet.js"></script>
+    <script src="camera_map_fichiers/leaflet.markercluster-src.js"></script>
+    <script src="camera_map_fichiers/Control.Geocoder.js"></script>
+    <script>
+        // Initialiser la carte
+        var map = L.map('mapid');
+
+        // Définir le fond de carte avec un style différent
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Ajouter la barre de recherche
+        L.Control.geocoder().addTo(map);
+
+        // Définir une icône personnalisée pour les caméras
+        var cameraIcon = L.icon({
+            iconUrl: 'https://icons.iconarchive.com/icons/iconarchive/outline-camera/256/Flat-Blue-Smooth-Camera-icon.png', // URL vers une icône de caméra
+            iconSize: [30, 30],
+            iconAnchor: [15, 30],
+            popupAnchor: [0, -30]
+        });
+
+        // Créer un groupe de clusters
+        var markers = L.markerClusterGroup();
+
+        // Ajouter les marqueurs des caméras
+
+        var marker = L.marker([38.1638, -77.6811], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 96.75.209.41</p>
+                    <a href="http://96.75.209.41/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.8371, -97.082], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.251.159.16</p>
+                    <a href="http://166.251.159.16/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([39.5449, -119.7572], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.44.248.18</p>
+                    <a href="http://47.44.248.18/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([4.71099, -74.0721], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 186.115.118.209</p>
+                    <a href="http://186.115.118.209/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.166, -80.7574], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 174.108.186.214</p>
+                    <a href="http://174.108.186.214/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([47.3823, 8.5397], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 213.3.12.15</p>
+                    <a href="http://213.3.12.15/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([33.0562, -117.2688], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 132.239.54.225</p>
+                    <a href="http://132.239.54.225/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([28.7675, -81.2844], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 75.112.36.194</p>
+                    <a href="http://75.112.36.194/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.1671, -86.7861], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 12.154.97.245</p>
+                    <a href="http://12.154.97.245/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.1033, 34.8879], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 212.235.89.48</p>
+                    <a href="http://212.235.89.48/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([51.5072, -0.127586], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 81.133.29.91</p>
+                    <a href="http://81.133.29.91/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([46.9354, 7.4271], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 178.195.146.36</p>
+                    <a href="http://178.195.146.36/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([31.5121, -109.8438], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 206.169.89.221</p>
+                    <a href="http://206.169.89.221/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([33.7488, -84.3877], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.130.159.188</p>
+                    <a href="http://166.130.159.188/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([4.71099, -74.0721], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 186.115.118.208</p>
+                    <a href="http://186.115.118.208/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.1671, -86.7861], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 12.154.97.244</p>
+                    <a href="http://12.154.97.244/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.1671, -86.7861], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 12.154.97.246</p>
+                    <a href="http://12.154.97.246/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.7157, -117.161], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 98.168.119.106</p>
+                    <a href="http://98.168.119.106/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([27.787, -82.6761], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 97.76.81.99</p>
+                    <a href="http://97.76.81.99/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([44.42, 26.0593], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 89.33.80.154</p>
+                    <a href="http://89.33.80.154/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([25.6751, -100.318], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 189.254.140.13</p>
+                    <a href="http://189.254.140.13/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([59.9139, 10.7522], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 158.39.102.39</p>
+                    <a href="http://158.39.102.39/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([39.1005, -94.5825], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 199.241.243.74</p>
+                    <a href="http://199.241.243.74/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([33.1922, -111.5318], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 98.184.46.226</p>
+                    <a href="http://98.184.46.226/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([18.2148, -63.0574], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 76.76.178.88</p>
+                    <a href="http://76.76.178.88/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.7642, -122.3993], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 209.40.90.55</p>
+                    <a href="http://209.40.90.55/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.1234, -77.7334], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 150.160.7.33</p>
+                    <a href="http://150.160.7.33/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([61.5761, 11.0482], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 77.106.164.66</p>
+                    <a href="http://77.106.164.66/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([45.7451, 6.2899], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 88.178.235.27</p>
+                    <a href="http://88.178.235.27/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([41.0641, -73.548], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 70.23.0.12</p>
+                    <a href="http://70.23.0.12/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([57.0006, 40.972], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 212.26.235.210</p>
+                    <a href="http://212.26.235.210/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([39.0997, -94.5786], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 4.7.71.13</p>
+                    <a href="http://4.7.71.13/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([19.4203, -99.1193], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 187.217.150.247</p>
+                    <a href="http://187.217.150.247/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([55.9079, 37.7455], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 91.211.6.70</p>
+                    <a href="http://91.211.6.70/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([29.5075, -95.0949], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.216.236.151</p>
+                    <a href="http://50.216.236.151/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([28.3056, -81.4197], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 144.129.162.180</p>
+                    <a href="http://144.129.162.180/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.0667, 141.35], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 118.21.108.115</p>
+                    <a href="http://118.21.108.115/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.6039, 2.2568], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 86.250.3.124</p>
+                    <a href="http://86.250.3.124/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.9897, 14.1677], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 79.9.120.166</p>
+                    <a href="http://79.9.120.166/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.0209, -79.63], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 72.43.65.7</p>
+                    <a href="http://72.43.65.7/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.445, -71.6503], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 146.168.29.250</p>
+                    <a href="http://146.168.29.250/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.7128, -74.006], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 209.37.64.125</p>
+                    <a href="http://209.37.64.125/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([45.7053, 9.6427], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 46.21.183.56</p>
+                    <a href="http://46.21.183.56/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([45.5957, -95.915], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 146.57.36.222</p>
+                    <a href="http://146.57.36.222/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.9688, -95.7028], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 100.42.92.26</p>
+                    <a href="http://100.42.92.26/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([39.0544, -78.1156], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.147.5.138</p>
+                    <a href="http://50.147.5.138/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([48.8566, 2.35222], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 80.13.197.254</p>
+                    <a href="http://80.13.197.254/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.0392, -75.1535], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 139.84.10.100</p>
+                    <a href="http://139.84.10.100/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([45.8293, 15.9793], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 213.147.126.105</p>
+                    <a href="http://213.147.126.105/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([41.9626, 12.4644], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 82.62.101.98</p>
+                    <a href="http://82.62.101.98/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([49.3483, 7.3951], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 46.165.154.227</p>
+                    <a href="http://46.165.154.227/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.7128, -74.006], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 69.55.88.24</p>
+                    <a href="http://69.55.88.24/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([28.4874, -16.3159], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 161.72.23.13</p>
+                    <a href="http://161.72.23.13/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([47.0242, 8.2566], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 81.62.249.134</p>
+                    <a href="http://81.62.249.134/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([45.7128, -89.3916], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 97.91.76.190</p>
+                    <a href="http://97.91.76.190/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([55.7056, 12.5683], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 212.27.14.143</p>
+                    <a href="http://212.27.14.143/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([46.1651, 7.2284], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 178.237.84.128</p>
+                    <a href="http://178.237.84.128/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8715, -74.35], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.22.77.235</p>
+                    <a href="http://47.22.77.235/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([49.4597, 14.9834], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 78.156.144.220</p>
+                    <a href="http://78.156.144.220/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([27.9455, -82.4598], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 38.95.4.230</p>
+                    <a href="http://38.95.4.230/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([30.1597, -92.0258], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 104.4.55.1</p>
+                    <a href="http://104.4.55.1/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([34.7814, -106.714], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 67.209.193.144</p>
+                    <a href="http://67.209.193.144/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([29.2007, -81.0388], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 155.31.14.42</p>
+                    <a href="http://155.31.14.42/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.7365, -84.5491], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 192.203.222.242</p>
+                    <a href="http://192.203.222.242/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([39.7435, -105.0619], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.189.45.98</p>
+                    <a href="http://50.189.45.98/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([24.8665, -107.4773], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 187.216.114.172</p>
+                    <a href="http://187.216.114.172/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([39.8744, -84.3287], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 96.11.243.131</p>
+                    <a href="http://96.11.243.131/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([38.9072, -77.0369], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 216.200.140.172</p>
+                    <a href="http://216.200.140.172/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([50.1109, 8.68213], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 185.109.33.24</p>
+                    <a href="http://185.109.33.24/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([24.7902, 125.311], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 218.40.172.9</p>
+                    <a href="http://218.40.172.9/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.4928, -77.47], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 71.24.58.117</p>
+                    <a href="http://71.24.58.117/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([34.879, -83.992], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 66.119.104.154</p>
+                    <a href="http://66.119.104.154/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.0842, -75.2287], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 104.229.118.55</p>
+                    <a href="http://104.229.118.55/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.1293, -72.7522], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 207.159.160.25</p>
+                    <a href="http://207.159.160.25/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([50.5048, 13.6466], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 213.129.132.171</p>
+                    <a href="http://213.129.132.171/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([34.6986, 135.5079], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 202.214.12.164</p>
+                    <a href="http://202.214.12.164/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.4114, -76.0996], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 24.97.108.242</p>
+                    <a href="http://24.97.108.242/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.5496, -71.6003], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 64.223.67.219</p>
+                    <a href="http://64.223.67.219/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([-6.18104, 106.826], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 36.88.169.242</p>
+                    <a href="http://36.88.169.242/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([34.879, -83.992], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 66.119.104.155</p>
+                    <a href="http://66.119.104.155/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([47.4907, 8.7388], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 80.75.114.19</p>
+                    <a href="http://80.75.114.19/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([19.6235, -99.15], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 170.0.14.236</p>
+                    <a href="http://170.0.14.236/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([52.1592, 5.3849], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 145.131.121.242</p>
+                    <a href="http://145.131.121.242/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([21.0935, -101.619], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 177.224.219.4</p>
+                    <a href="http://177.224.219.4/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.9436, -78.8369], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 173.225.53.42</p>
+                    <a href="http://173.225.53.42/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([41.85, -87.7165], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.157.134.149</p>
+                    <a href="http://166.157.134.149/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.1287, -79.4086], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 70.60.107.118</p>
+                    <a href="http://70.60.107.118/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([39.4831, -88.3728], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 71.181.7.91</p>
+                    <a href="http://71.181.7.91/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([48.1712, 16.321], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 81.223.81.187</p>
+                    <a href="http://81.223.81.187/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([29.4843, -81.2042], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 97.68.104.34</p>
+                    <a href="http://97.68.104.34/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([41.1341, -73.7831], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 68.129.121.197</p>
+                    <a href="http://68.129.121.197/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([-6.18104, 106.826], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 36.91.214.202</p>
+                    <a href="http://36.91.214.202/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([28.3299, -81.3559], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 97.68.134.88</p>
+                    <a href="http://97.68.134.88/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.9842, 23.7353], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 94.70.242.174</p>
+                    <a href="http://94.70.242.174/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.7328, -76.5898], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 24.216.28.122</p>
+                    <a href="http://24.216.28.122/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([35.7247, 139.7133], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 122.212.193.171</p>
+                    <a href="http://122.212.193.171/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([44.1552, -93.9961], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 198.160.171.199</p>
+                    <a href="http://198.160.171.199/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.077, -87.7209], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.156.117.174</p>
+                    <a href="http://166.156.117.174/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([47.4467, -122.2684], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.197.88.29</p>
+                    <a href="http://50.197.88.29/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([38.2573, -76.4498], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 208.90.140.133</p>
+                    <a href="http://208.90.140.133/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([24.9889, 121.3176], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 61.220.174.214</p>
+                    <a href="http://61.220.174.214/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([51.5238, -0.089], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 81.2.108.35</p>
+                    <a href="http://81.2.108.35/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([44.7502, -121.2922], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 67.59.80.23</p>
+                    <a href="http://67.59.80.23/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([30.4863, -87.1829], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 66.210.32.173</p>
+                    <a href="http://66.210.32.173/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([-6.18104, 106.826], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 36.88.175.82</p>
+                    <a href="http://36.88.175.82/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([46.6233, 14.2999], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 91.112.73.226</p>
+                    <a href="http://91.112.73.226/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([31.3145, -89.3788], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 173.235.69.106</p>
+                    <a href="http://173.235.69.106/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8108, -73.3667], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 75.99.53.114</p>
+                    <a href="http://75.99.53.114/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([44.8439, -87.3734], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.49.38.178</p>
+                    <a href="http://47.49.38.178/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([28.3056, -81.4197], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 144.129.162.181</p>
+                    <a href="http://144.129.162.181/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([35.9507, -79.9792], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 74.124.168.162</p>
+                    <a href="http://74.124.168.162/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([48.8566, 2.35222], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 90.63.162.227</p>
+                    <a href="http://90.63.162.227/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([-37.8199, 145.0285], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 180.150.58.9</p>
+                    <a href="http://180.150.58.9/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([38.3861, -89.0702], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 96.35.163.110</p>
+                    <a href="http://96.35.163.110/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([38.8968, -77.0725], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 65.201.171.70</p>
+                    <a href="http://65.201.171.70/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([58.9402, 11.1788], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 194.71.159.22</p>
+                    <a href="http://194.71.159.22/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([38.4186, -96.1844], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 12.208.127.131</p>
+                    <a href="http://12.208.127.131/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([47.0314, 15.1504], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 91.113.220.122</p>
+                    <a href="http://91.113.220.122/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.009, -76.3631], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.241.173.245</p>
+                    <a href="http://50.241.173.245/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([47.4883, 11.089], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 81.201.32.242</p>
+                    <a href="http://81.201.32.242/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.4928, -77.47], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.242.37.241</p>
+                    <a href="http://50.242.37.241/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.9074, -78.8197], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 98.117.172.227</p>
+                    <a href="http://98.117.172.227/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([30.0588, 31.2268], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 197.164.196.20</p>
+                    <a href="http://197.164.196.20/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([50.1109, 8.68213], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 109.91.182.61</p>
+                    <a href="http://109.91.182.61/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.3495, -88.8545], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 208.87.72.243</p>
+                    <a href="http://208.87.72.243/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([50.458, 30.5303], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 212.90.187.251</p>
+                    <a href="http://212.90.187.251/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8715, -74.35], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.22.77.238</p>
+                    <a href="http://47.22.77.238/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.1671, -86.7861], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 12.154.97.250</p>
+                    <a href="http://12.154.97.250/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.4612, -77.395], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 96.84.230.181</p>
+                    <a href="http://96.84.230.181/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.1108, 12.398], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 80.181.201.36</p>
+                    <a href="http://80.181.201.36/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([45.4642, 9.18998], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 85.31.165.140</p>
+                    <a href="http://85.31.165.140/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.4143, -90.1185], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 136.239.6.218</p>
+                    <a href="http://136.239.6.218/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([50.1808, 15.037], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 89.190.32.100</p>
+                    <a href="http://89.190.32.100/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([44.9118, -85.0638], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 75.133.74.234</p>
+                    <a href="http://75.133.74.234/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([39.0851, -77.059], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 129.2.146.15</p>
+                    <a href="http://129.2.146.15/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.8216, 11.1478], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 62.48.32.5</p>
+                    <a href="http://62.48.32.5/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([26.2822, -80.1156], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.241.21.64</p>
+                    <a href="http://166.241.21.64/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.7125, -4.407], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 2.139.159.54</p>
+                    <a href="http://2.139.159.54/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([38.2821, -77.1306], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 74.214.46.120</p>
+                    <a href="http://74.214.46.120/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.1671, -86.7861], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 12.154.97.252</p>
+                    <a href="http://12.154.97.252/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([41.0145, 28.9533], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 188.59.193.230</p>
+                    <a href="http://188.59.193.230/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([28.1138, -82.3677], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 67.79.132.196</p>
+                    <a href="http://67.79.132.196/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([44.8404, -0.5805], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 193.251.179.59</p>
+                    <a href="http://193.251.179.59/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([27.0442, -82.2359], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 71.27.228.66</p>
+                    <a href="http://71.27.228.66/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.0364, -88.324], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.247.132.225</p>
+                    <a href="http://50.247.132.225/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([26.2822, -80.1156], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.241.21.105</p>
+                    <a href="http://166.241.21.105/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.6193, -82.961], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 173.167.10.225</p>
+                    <a href="http://173.167.10.225/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([39.9664, -75.1685], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 128.91.138.17</p>
+                    <a href="http://128.91.138.17/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([47.3952, 8.4925], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 157.143.114.25</p>
+                    <a href="http://157.143.114.25/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([38.9522, -77.0253], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 173.10.168.251</p>
+                    <a href="http://173.10.168.251/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.4339, -79.9996], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.248.66.6</p>
+                    <a href="http://50.248.66.6/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.4227, -85.0778], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.254.8.248</p>
+                    <a href="http://166.254.8.248/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([48.2543, 13.0426], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 92.39.160.208</p>
+                    <a href="http://92.39.160.208/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([46.9109, -88.8532], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 67.22.14.220</p>
+                    <a href="http://67.22.14.220/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.978, -121.894], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 24.23.252.90</p>
+                    <a href="http://24.23.252.90/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([19.4196, -99.1428], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 201.144.143.93</p>
+                    <a href="http://201.144.143.93/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.4928, -77.47], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 96.94.216.65</p>
+                    <a href="http://96.94.216.65/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.2168, -75.4535], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 24.97.74.186</p>
+                    <a href="http://24.97.74.186/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.4638, -123.3464], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 97.90.105.122</p>
+                    <a href="http://97.90.105.122/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([44.1659, 8.3462], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 185.85.25.87</p>
+                    <a href="http://185.85.25.87/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.8558, -76.0042], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 184.179.17.201</p>
+                    <a href="http://184.179.17.201/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([55.9199, 12.1646], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 87.59.126.40</p>
+                    <a href="http://87.59.126.40/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([47.8485, 16.5246], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 195.230.164.17</p>
+                    <a href="http://195.230.164.17/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.4365, -77.4807], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 96.75.205.25</p>
+                    <a href="http://96.75.205.25/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.0732, -82.4017], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 162.155.129.50</p>
+                    <a href="http://162.155.129.50/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.3106, -94.3493], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 66.204.24.14</p>
+                    <a href="http://66.204.24.14/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([34.3454, -86.274], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 71.8.36.42</p>
+                    <a href="http://71.8.36.42/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([48.2543, 13.0426], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 92.39.169.170</p>
+                    <a href="http://92.39.169.170/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([49.0823, -122.771], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 66.119.160.235</p>
+                    <a href="http://66.119.160.235/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([39.6343, -77.7337], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 63.47.32.194</p>
+                    <a href="http://63.47.32.194/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([33.6891, -78.8867], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 70.63.150.242</p>
+                    <a href="http://70.63.150.242/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.318, -75.1331], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.250.2.155</p>
+                    <a href="http://166.250.2.155/axis-cgi/jpg/image.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([41.6047, -72.8813], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 173.14.144.26</p>
+                    <a href="http://173.14.144.26/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.175, -76.1817], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 96.77.165.5</p>
+                    <a href="http://96.77.165.5/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([47.4467, -122.2684], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.197.88.28</p>
+                    <a href="http://50.197.88.28/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.6653, -77.5364], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.211.36.73</p>
+                    <a href="http://50.211.36.73/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([57.7794, 14.176], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 185.80.208.125</p>
+                    <a href="http://185.80.208.125/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([47.4907, 8.7388], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 80.75.114.18</p>
+                    <a href="http://80.75.114.18/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([55.7056, 12.5683], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 212.27.15.194</p>
+                    <a href="http://212.27.15.194/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.318, -75.1331], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.168.109.207</p>
+                    <a href="http://166.168.109.207/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([46.7657, 23.5943], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 193.226.6.110</p>
+                    <a href="http://193.226.6.110/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([59.3241, 18.0517], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 130.237.58.184</p>
+                    <a href="http://130.237.58.184/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([21.0462, -101.8292], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 189.162.85.31</p>
+                    <a href="http://189.162.85.31/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([48.8394, 13.3431], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 79.219.158.2</p>
+                    <a href="http://79.219.158.2/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([48.2169, 16.4997], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 80.123.111.53</p>
+                    <a href="http://80.123.111.53/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([35.7796, -78.6382], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 66.193.209.209</p>
+                    <a href="http://66.193.209.209/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.9689, -74.1604], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 108.176.121.10</p>
+                    <a href="http://108.176.121.10/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.318, -75.1331], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.168.109.173</p>
+                    <a href="http://166.168.109.173/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([31.3443, -89.2189], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 66.208.252.187</p>
+                    <a href="http://66.208.252.187/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([46.1563, -89.3218], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 67.22.10.253</p>
+                    <a href="http://67.22.10.253/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.2086, -79.949], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 205.211.11.159</p>
+                    <a href="http://205.211.11.159/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([30.4762, -91.2608], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.169.218.224</p>
+                    <a href="http://166.169.218.224/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([56.6654, 16.3613], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 195.196.36.242</p>
+                    <a href="http://195.196.36.242/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([41.0683, -76.2459], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 148.137.99.247</p>
+                    <a href="http://148.137.99.247/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([44.1552, -93.9961], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 198.160.171.193</p>
+                    <a href="http://198.160.171.193/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([45.8293, 15.9793], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 213.147.126.106</p>
+                    <a href="http://213.147.126.106/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([48.2543, 13.0426], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 92.39.167.140</p>
+                    <a href="http://92.39.167.140/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([21.1254, -101.6197], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 189.162.180.249</p>
+                    <a href="http://189.162.180.249/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([29.4252, -98.4946], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.168.152.176</p>
+                    <a href="http://166.168.152.176/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([27.8719, -82.6371], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 97.76.165.226</p>
+                    <a href="http://97.76.165.226/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.5334, -92.0747], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 198.232.231.138</p>
+                    <a href="http://198.232.231.138/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([24.183, 120.6419], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 211.20.129.135</p>
+                    <a href="http://211.20.129.135/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.1471, -75.8816], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 24.97.151.11</p>
+                    <a href="http://24.97.151.11/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([26.4965, -81.8206], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.222.233.202</p>
+                    <a href="http://50.222.233.202/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8879, -73.0087], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.247.198.225</p>
+                    <a href="http://166.247.198.225/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([-29.8556, 31.0449], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 196.21.92.82</p>
+                    <a href="http://196.21.92.82/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.0923, -74.2252], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.238.154.6</p>
+                    <a href="http://50.238.154.6/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([34.3309, -89.4837], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.86.72.67</p>
+                    <a href="http://50.86.72.67/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([28.0109, -82.4948], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 71.41.73.146</p>
+                    <a href="http://71.41.73.146/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.6508, -79.4803], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 69.157.197.139</p>
+                    <a href="http://69.157.197.139/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([47.1349, 7.6045], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 178.196.116.144</p>
+                    <a href="http://178.196.116.144/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([39.9534, -76.7942], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 209.213.168.73</p>
+                    <a href="http://209.213.168.73/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([20.9144, -100.745], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 177.246.97.7</p>
+                    <a href="http://177.246.97.7/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([28.0164, -81.9554], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 108.190.176.73</p>
+                    <a href="http://108.190.176.73/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.4373, -90.1472], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 173.235.168.82</p>
+                    <a href="http://173.235.168.82/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([33.8838, -118.1261], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 97.93.166.212</p>
+                    <a href="http://97.93.166.212/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([44.166, -87.5832], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 71.82.242.99</p>
+                    <a href="http://71.82.242.99/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.9186, -121.3132], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 173.255.111.12</p>
+                    <a href="http://173.255.111.12/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([49.4521, 11.0767], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 93.241.230.189</p>
+                    <a href="http://93.241.230.189/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.6858, 26.3292], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 84.54.139.100</p>
+                    <a href="http://84.54.139.100/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([48.8566, 2.35222], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 80.11.3.3</p>
+                    <a href="http://80.11.3.3/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([34.7315, -86.5654], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 207.111.169.137</p>
+                    <a href="http://207.111.169.137/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([47.0021, 7.1096], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 85.3.226.171</p>
+                    <a href="http://85.3.226.171/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([38.0551, -97.9323], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 8.48.113.66</p>
+                    <a href="http://8.48.113.66/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([35.6906, 139.77], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 150.66.104.188</p>
+                    <a href="http://150.66.104.188/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([28.0325, -82.6035], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 97.76.233.210</p>
+                    <a href="http://97.76.233.210/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([30.2262, -95.2832], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 63.45.217.207</p>
+                    <a href="http://63.45.217.207/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.1053, -79.8762], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 206.74.195.199</p>
+                    <a href="http://206.74.195.199/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.4143, -90.1185], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 136.239.6.62</p>
+                    <a href="http://136.239.6.62/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.7047, -122.1245], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 75.149.39.121</p>
+                    <a href="http://75.149.39.121/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.3737, -71.1284], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.187.54.126</p>
+                    <a href="http://50.187.54.126/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([35.6945, 139.983], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 153.156.224.16</p>
+                    <a href="http://153.156.224.16/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([20.617, -105.23], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 187.174.136.138</p>
+                    <a href="http://187.174.136.138/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([48.2543, 13.0426], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 92.39.169.171</p>
+                    <a href="http://92.39.169.171/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.5281, -121.9732], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.197.176.20</p>
+                    <a href="http://50.197.176.20/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([45.3576, -84.9088], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 71.83.5.157</p>
+                    <a href="http://71.83.5.157/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([33.1669, -87.5064], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 162.253.25.172</p>
+                    <a href="http://162.253.25.172/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([39.7392, -104.99], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 64.110.3.99</p>
+                    <a href="http://64.110.3.99/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.9786, -121.3147], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 162.17.82.39</p>
+                    <a href="http://162.17.82.39/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.8133, -70.8814], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 73.119.225.158</p>
+                    <a href="http://73.119.225.158/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([35.8123, -78.5469], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.149.251.149</p>
+                    <a href="http://166.149.251.149/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([54.8463, 9.3962], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 95.154.28.198</p>
+                    <a href="http://95.154.28.198/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([33.5813, -85.8321], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.251.253.247</p>
+                    <a href="http://166.251.253.247/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.6591, -70.2568], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 64.222.170.118</p>
+                    <a href="http://64.222.170.118/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([59.9016, 10.7343], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 62.101.232.85</p>
+                    <a href="http://62.101.232.85/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([50.9788, 12.9699], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 80.243.60.74</p>
+                    <a href="http://80.243.60.74/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([30.7235, -95.5508], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 208.180.92.147</p>
+                    <a href="http://208.180.92.147/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.4142, 136.458], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 180.94.207.234</p>
+                    <a href="http://180.94.207.234/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.8371, -97.082], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 63.41.169.253</p>
+                    <a href="http://63.41.169.253/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([38.6704, -77.0117], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 72.83.243.21</p>
+                    <a href="http://72.83.243.21/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.4178, -85.7601], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 198.245.198.246</p>
+                    <a href="http://198.245.198.246/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([49.4597, 14.9834], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 78.156.144.221</p>
+                    <a href="http://78.156.144.221/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.4248, -83.1951], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.253.253.52</p>
+                    <a href="http://50.253.253.52/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([45.5957, -95.915], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 146.57.39.105</p>
+                    <a href="http://146.57.39.105/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.2238, 137.9656], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 14.14.95.187</p>
+                    <a href="http://14.14.95.187/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([35.3596, -82.4266], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 24.246.154.111</p>
+                    <a href="http://24.246.154.111/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.3471, -79.8641], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.230.185.13</p>
+                    <a href="http://50.230.185.13/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.2095, -93.3044], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 12.160.113.36</p>
+                    <a href="http://12.160.113.36/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([33.4689, -111.9155], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 184.180.189.17</p>
+                    <a href="http://184.180.189.17/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.7274, 7.29907], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 192.134.16.245</p>
+                    <a href="http://192.134.16.245/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([41.701, -71.5194], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 98.172.167.156</p>
+                    <a href="http://98.172.167.156/mjpg/video.mjpg" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([55.7483, 37.6171], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 195.9.51.19</p>
+                    <a href="http://195.9.51.19/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([33.5792, -7.6133], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 197.230.46.145</p>
+                    <a href="http://197.230.46.145/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([58.9402, 11.1788], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 194.71.159.8</p>
+                    <a href="http://194.71.159.8/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.1671, -86.7861], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 12.154.97.249</p>
+                    <a href="http://12.154.97.249/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([28.0386, -82.3696], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 67.79.173.52</p>
+                    <a href="http://67.79.173.52/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([61.6911, 27.2402], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 82.197.28.98</p>
+                    <a href="http://82.197.28.98/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([34.7315, -86.5654], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 207.111.165.82</p>
+                    <a href="http://207.111.165.82/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.0388, -81.1219], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.252.186.197</p>
+                    <a href="http://50.252.186.197/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([34.6666, -86.5536], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 205.201.233.21</p>
+                    <a href="http://205.201.233.21/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([31.9948, -81.2335], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 96.91.10.218</p>
+                    <a href="http://96.91.10.218/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.2438, -80.2256], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 73.79.110.65</p>
+                    <a href="http://73.79.110.65/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([34.9398, -81.0286], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 199.79.254.139</p>
+                    <a href="http://199.79.254.139/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([37.9643, -84.4703], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 64.191.144.170</p>
+                    <a href="http://64.191.144.170/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([49.4678, 11.1454], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.69.72.23</p>
+                    <a href="http://47.69.72.23/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([45.8265, 1.2484], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 82.125.19.152</p>
+                    <a href="http://82.125.19.152/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.8215, -80.0568], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.193.250.126</p>
+                    <a href="http://50.193.250.126/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([26.2822, -80.1156], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.241.21.131</p>
+                    <a href="http://166.241.21.131/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([25.7634, -80.1886], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 173.9.163.242</p>
+                    <a href="http://173.9.163.242/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([59.3241, 18.0517], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 130.237.58.178</p>
+                    <a href="http://130.237.58.178/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.8851, -112.4441], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 209.141.112.76</p>
+                    <a href="http://209.141.112.76/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.1671, -86.7861], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 12.154.97.243</p>
+                    <a href="http://12.154.97.243/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.1671, -86.7861], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 12.154.97.247</p>
+                    <a href="http://12.154.97.247/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([25.6751, -100.318], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 189.254.140.12</p>
+                    <a href="http://189.254.140.12/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([33.1922, -111.5318], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 98.184.46.227</p>
+                    <a href="http://98.184.46.227/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([19.4203, -99.1193], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 187.217.150.248</p>
+                    <a href="http://187.217.150.248/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.0209, -79.63], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 72.43.65.8</p>
+                    <a href="http://72.43.65.8/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.9688, -95.7028], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 100.42.92.25</p>
+                    <a href="http://100.42.92.25/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([39.0544, -78.1156], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.147.5.137</p>
+                    <a href="http://50.147.5.137/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.7128, -74.006], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 69.55.88.23</p>
+                    <a href="http://69.55.88.23/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([28.4874, -16.3159], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 161.72.23.12</p>
+                    <a href="http://161.72.23.12/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([28.4874, -16.3159], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 161.72.23.14</p>
+                    <a href="http://161.72.23.14/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8715, -74.35], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.22.77.234</p>
+                    <a href="http://47.22.77.234/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8715, -74.35], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.22.77.236</p>
+                    <a href="http://47.22.77.236/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([29.2007, -81.0388], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 155.31.14.41</p>
+                    <a href="http://155.31.14.41/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([41.1341, -73.7831], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 68.129.121.196</p>
+                    <a href="http://68.129.121.196/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([41.1341, -73.7831], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 68.129.121.198</p>
+                    <a href="http://68.129.121.198/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([28.3299, -81.3559], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 97.68.134.87</p>
+                    <a href="http://97.68.134.87/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([51.5238, -0.089], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 81.2.108.34</p>
+                    <a href="http://81.2.108.34/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([51.5238, -0.089], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 81.2.108.36</p>
+                    <a href="http://81.2.108.36/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([50.458, 30.5303], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 212.90.187.252</p>
+                    <a href="http://212.90.187.252/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8715, -74.35], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.22.77.237</p>
+                    <a href="http://47.22.77.237/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.1671, -86.7861], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 12.154.97.251</p>
+                    <a href="http://12.154.97.251/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.8216, 11.1478], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 62.48.32.4</p>
+                    <a href="http://62.48.32.4/axis-cgi/jpg/image.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.1671, -86.7861], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 12.154.97.253</p>
+                    <a href="http://12.154.97.253/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.6193, -82.961], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 173.167.10.226</p>
+                    <a href="http://173.167.10.226/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([19.4196, -99.1428], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 201.144.143.92</p>
+                    <a href="http://201.144.143.92/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([57.7794, 14.176], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 185.80.208.124</p>
+                    <a href="http://185.80.208.124/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.2086, -79.949], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 205.211.11.158</p>
+                    <a href="http://205.211.11.158/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([34.3309, -89.4837], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.86.72.66</p>
+                    <a href="http://50.86.72.66/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([45.3576, -84.9088], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 71.83.5.156</p>
+                    <a href="http://71.83.5.156/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([33.5813, -85.8321], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 166.251.253.246</p>
+                    <a href="http://166.251.253.246/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([38.6704, -77.0117], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 72.83.243.20</p>
+                    <a href="http://72.83.243.20/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([49.4597, 14.9834], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 78.156.144.222</p>
+                    <a href="http://78.156.144.222/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([33.5792, -7.6133], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 197.230.46.146</p>
+                    <a href="http://197.230.46.146/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([36.1671, -86.7861], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 12.154.97.248</p>
+                    <a href="http://12.154.97.248/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.0388, -81.1219], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.252.186.196</p>
+                    <a href="http://50.252.186.196/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.8851, -112.4441], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 209.141.112.75</p>
+                    <a href="http://209.141.112.75/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.8851, -112.4441], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 209.141.112.77</p>
+                    <a href="http://209.141.112.77/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([19.4203, -99.1193], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 187.217.150.249</p>
+                    <a href="http://187.217.150.249/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([42.0209, -79.63], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 72.43.65.9</p>
+                    <a href="http://72.43.65.9/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8715, -74.35], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.22.77.233</p>
+                    <a href="http://47.22.77.233/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([51.5238, -0.089], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 81.2.108.33</p>
+                    <a href="http://81.2.108.33/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.8216, 11.1478], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 62.48.32.3</p>
+                    <a href="http://62.48.32.3/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([45.3576, -84.9088], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 71.83.5.155</p>
+                    <a href="http://71.83.5.155/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.0388, -81.1219], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.252.186.195</p>
+                    <a href="http://50.252.186.195/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8715, -74.35], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.22.77.232</p>
+                    <a href="http://47.22.77.232/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([43.8216, 11.1478], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 62.48.32.2</p>
+                    <a href="http://62.48.32.2/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([32.0388, -81.1219], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 50.252.186.194</p>
+                    <a href="http://50.252.186.194/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8715, -74.35], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.22.77.231</p>
+                    <a href="http://47.22.77.231/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8715, -74.35], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.22.77.230</p>
+                    <a href="http://47.22.77.230/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8715, -74.35], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.22.77.229</p>
+                    <a href="http://47.22.77.229/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8715, -74.35], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.22.77.228</p>
+                    <a href="http://47.22.77.228/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        var marker = L.marker([40.8715, -74.35], {icon: cameraIcon})
+            .bindPopup(`
+                <div style="text-align:center;">
+                    <h3>Caméra IP</h3>
+                    <p><b>Adresse :</b> 47.22.77.227</p>
+                    <a href="http://47.22.77.227/axis-cgi/mjpg/video.cgi" target="_blank">🔗 Voir la caméra</a>
+                </div>
+            `);
+        markers.addLayer(marker);
+    
+        // Ajouter le groupe de clusters à la carte
+        map.addLayer(markers);
+
+        // Ajuster la vue de la carte pour contenir tous les marqueurs
+        if (markers.getLayers().length > 0) {
+            map.fitBounds(markers.getBounds());
+        } else {
+            map.setView([0, 0], 2); // Vue par défaut si aucun marqueur
+        }
+
+        // Ajouter une légende
+        var legend = L.control({position: 'bottomright'});
+
+        legend.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML += '<img src="https://icons.iconarchive.com/icons/iconarchive/outline-camera/256/Flat-Blue-Smooth-Camera-icon.png" width="20"> Caméra IP';
+            return div;
+        };
+
+        legend.addTo(map);
+
+    </script>
+
+
+</body><nordvpn-contentscript-extension-mount-3.3.0></nordvpn-contentscript-extension-mount-3.3.0></html>
