@@ -1,0 +1,122 @@
+[
+    {
+        "productvendor": "Axis",
+        "ip": "95.242.123.165",
+        "port": 444,
+        "url": "http://95.242.123.165:444/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "24.134.3.9",
+        "port": 80,
+        "url": "http://24.134.3.9:80/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "166.241.21.105",
+        "port": 80,
+        "url": "http://166.241.21.105:80/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "187.141.142.149",
+        "port": 8010,
+        "url": "http://187.141.142.149:8010/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "27.231.181.97",
+        "port": 8080,
+        "url": "http://27.231.181.97:8080/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "109.190.32.145",
+        "port": 81,
+        "url": "http://109.190.32.145:81/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "206.169.89.221",
+        "port": 1080,
+        "url": "http://206.169.89.221:1080/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "166.130.158.14",
+        "port": 80,
+        "url": "http://166.130.158.14:80/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "67.43.222.122",
+        "port": 80,
+        "url": "http://67.43.222.122:80/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "206.169.89.221",
+        "port": 7547,
+        "url": "http://206.169.89.221:7547/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "24.182.155.70",
+        "port": 10022,
+        "url": "http://24.182.155.70:10022/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "96.38.196.178",
+        "port": 10022,
+        "url": "http://96.38.196.178:10022/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "96.75.205.25",
+        "port": 80,
+        "url": "http://96.75.205.25:80/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "103.151.177.197",
+        "port": 8000,
+        "url": "http://103.151.177.197:8000/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    },
+    {
+        "productvendor": "Axis",
+        "ip": "95.242.123.165",
+        "port": 444,
+        "url": "http://95.242.123.165:444/axis-cgi/mjpg/video.cgi",
+        "user": null,
+        "password": null
+    }
+]

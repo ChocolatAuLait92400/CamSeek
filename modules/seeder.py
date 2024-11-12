@@ -1,0 +1,2 @@
+#onyphe -search 'category:datascan device.class:camera device.productvendor:"Axis" -since:1d | uniq ip,port,device.productvendor' | jq -s '[.[] | {productvendor: .device.productvendor, ip: .ip, port: .port}]'
+#scp osint@192.168.132.135:/home/osint/cli/cameras.json ./
