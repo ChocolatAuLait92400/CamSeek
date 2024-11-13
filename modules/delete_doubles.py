@@ -1,5 +1,9 @@
 import json
 import sys
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def remove_duplicates_from_json(file_path):
     try:
@@ -9,12 +13,14 @@ def remove_duplicates_from_json(file_path):
 
         # Ensure the file contains a list
         if not isinstance(data, list):
-            print("Error: The JSON file does not contain a list.")
+            logging.error("The JSON file does not contain a list.")
             return
 
         # Remove duplicates while preserving order
         seen = set()
         unique_list = []
+        duplicates_count = 0
+
         for item in data:
             # Convert item to a tuple if it's a dictionary for hashing
             # Otherwise, use the item directly
@@ -22,23 +28,27 @@ def remove_duplicates_from_json(file_path):
             if item_key not in seen:
                 unique_list.append(item)
                 seen.add(item_key)
+            else:
+                duplicates_count += 1
 
         # Write the cleaned list back to the file
         with open(file_path, 'w') as file:
             json.dump(unique_list, file, indent=4)
 
-        print("Duplicates removed successfully.")
+        logging.info("Duplicates removed successfully.")
+        logging.info(f"Total duplicates removed: {duplicates_count}")
+        logging.info(f"Remaining unique entries: {len(unique_list)}")
     except FileNotFoundError:
-        print(f"Error: File '{file_path}' not found.")
+        logging.error(f"File '{file_path}' not found.")
     except json.JSONDecodeError:
-        print("Error: Failed to decode JSON. Ensure the file contains valid JSON.")
+        logging.error("Failed to decode JSON. Ensure the file contains valid JSON.")
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        logging.error(f"An unexpected error occurred: {e}")
 
 if __name__ == "__main__":
     # Ensure a file path is provided as a command-line argument
     if len(sys.argv) != 2:
-        print("Usage: python remove_duplicates_from_json.py <file_path>")
+        logging.error("Usage: python remove_duplicates_from_json.py <file_path>")
     else:
         file_path = sys.argv[1]
         remove_duplicates_from_json(file_path)

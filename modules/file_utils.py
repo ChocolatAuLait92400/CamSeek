@@ -1,9 +1,11 @@
 import json
 import logging
 import os
+from .delete_doubles import remove_duplicates_from_json
 
 def load_cameras(json_file):
     try:
+        remove_duplicates_from_json(json_file)
         with open(json_file, 'r', encoding='utf-8') as f:
             camera_urls = json.load(f)
             logging.info(f"{len(camera_urls)} URL de caméras chargées depuis {json_file}")
