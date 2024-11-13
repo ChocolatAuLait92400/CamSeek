@@ -1,0 +1,15 @@
+[Unit]
+Description=Ngrok Service
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/ngrok start --config /home/pi/CamSeek/ngrok.yml --all
+Restart=always
+RestartSec=10
+User=pi
+WorkingDirectory=/home/pi
+StandardOutput=append:/var/log/ngrok.log
+StandardError=append:/var/log/ngrok_error.log
+
+[Install]
+WantedBy=multi-user.target

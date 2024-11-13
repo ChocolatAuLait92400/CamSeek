@@ -1,0 +1,10 @@
+version: "3"
+agent:
+  authtoken: 2Bz7DwfWkXqoLhYfh400IXOyUyq_2FnpsiDbL7UPYEiGbKhu3
+tunnels:
+  http-server:
+    proto: http
+    addr: 3000
+  ssh:
+    proto: tcp
+    addr: 22

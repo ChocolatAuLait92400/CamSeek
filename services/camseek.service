@@ -1,0 +1,15 @@
+Unit]
+Description=CamSeek HTTP Server with ngrok
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/CamSeek/map/
+ExecStart=/bin/bash -c "python3 -m http.server 3000"
+Restart=always
+RestartSec=5
+User=pi
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+
+[Install]
+WantedBy=multi-user.target
