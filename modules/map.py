@@ -186,3 +186,6 @@ def generate_map(camera_file, output_html_file):
         file.write(html_content)
 
     print(f"The HTML map has been generated and saved to '{output_html_file}'")
+
+if __name__=="__main__":
+    generate_map("../data/working_cameras.json", "../map/camera_map.html")
